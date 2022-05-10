@@ -1,0 +1,39 @@
+.overlay {
+  padding: 2rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.6);
+  display: none;
+}
+
+.rating {
+  color: brown;
+}
+
+.overlay-link {
+  font-size: 1.7rem;
+  color: hsl(0, 59%, 41%);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 800;
+  transition: all 0.4s ease-out;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.centered {
+  justify-content: center;
+}
+
+.overlay-link:hover {
+  color: black;
+}
