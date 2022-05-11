@@ -19,7 +19,11 @@ const Index = () => {
   const { theme } = useContext(ThemeContext);
 
   const setSeason = (id) => {
-    setSelectedSeason(id);
+    if (selectedSeason === id) {
+      setSelectedSeason(null);
+    } else {
+      setSelectedSeason(id);
+    }
   };
 
   useEffect(() => {
@@ -49,7 +53,7 @@ const Index = () => {
             <>
               <Card key={season.id}>
                 <img
-                  src={season.image.original}
+                  src={season.image?.original}
                   className="img"
                   alt={season.name}
                   title={season.title}

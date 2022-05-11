@@ -9,7 +9,7 @@ const Dropdown = () => {
 
   return (
     <div className="dropdown" style={{ backgroundColor: theme.element }}>
-      <DropdownLink>Search</DropdownLink>
+      <DropdownLink>News</DropdownLink>
       <DropdownLink>Watched</DropdownLink>
       <DropdownLink>Skipped</DropdownLink>
       <Divider />

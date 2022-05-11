@@ -25,11 +25,11 @@ const Index = () => {
         <span style={{ color }}>Tv Shows</span>
       </Link>
       <Link
-        to={'/search'}
+        to={'/news'}
         className="navlink collapse"
         style={{ textDecorationColor: color }}
       >
-        <span style={{ color }}>Search</span>
+        <span style={{ color }}>News</span>
       </Link>
       <Link
         to={'/watched'}

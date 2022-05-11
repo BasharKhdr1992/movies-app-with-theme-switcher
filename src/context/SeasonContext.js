@@ -21,6 +21,7 @@ export const SeasonProvider = (props) => {
     setTimeout(async () => {
       try {
         const res = await axios.get(`/shows/${show_id}/seasons`);
+        console.log(res.data);
         dispatch({
           type: Types.SEASONS_LOADED,
           payload: res.data,
