@@ -1,4 +1,4 @@
-# Movie Browser Demo App
+# Tv Shows Browser Demo App
 
 ## Features
 
