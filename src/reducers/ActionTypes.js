@@ -9,3 +9,7 @@ export const SEASONS_ERROR = 'SEASONS_ERROR';
 export const EPISODES_LOADING = 'EPISODES_LOADING';
 export const EPISODES_LOADED = 'EPISODES_LOADED';
 export const EPISODES_ERROR = 'EPISODES_ERROR';
+
+export const CAST_LOADING = 'CAST_LOADING';
+export const CAST_ERROR = 'CAST_ERROR';
+export const CAST_LOADED = 'CAST_LOADED';

@@ -3,14 +3,18 @@ import { useParams } from 'react-router-dom';
 import './index.css';
 import { renderHtml } from '../../utils';
 import { ThemeContext } from './../../context/ThemeContext';
+import { ShowContext } from '../../context/ShowContext';
 import CenteredContainer from './../UI/CenteredContainer';
 import Divider from '../UI/Divider';
 import Error from '../UI/Error';
 import { useWindowSize } from './../../custom-hooks/useWindowSize';
+import Spinner from '../UI/Spinner';
 
 const Index = () => {
   const [show, setShow] = useState(null);
   const { theme } = useContext(ThemeContext);
+
+  const { cast, addCast } = useContext(ShowContext);
 
   const [width] = useWindowSize();
 
@@ -23,9 +27,11 @@ const Index = () => {
         const foundShow = shows.find((show) => show.id === +id);
         if (foundShow !== undefined) {
           setShow(foundShow);
+          addCast(id);
         }
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const renderRow = (title, value, color) => {
@@ -35,6 +41,32 @@ const Index = () => {
         <p style={{ color }}>{value}</p>
       </div>
     );
+  };
+
+  const RenderCast = ({ textColor }) => {
+    if (cast.isLoading) {
+      return <Spinner />;
+    } else if (cast.error) {
+      return <Error>{cast.error}</Error>;
+    }
+
+    return cast.cast.map((item) => {
+      return (
+        <div className="cast-item">
+          <img
+            src={item.person.image?.original}
+            alt={item.person.name}
+            title={item.person.name}
+          />
+          <p className="person-name" style={{ color: textColor }}>
+            {item.person.name}
+          </p>
+          <em className="character-name" style={{ color: textColor }}>
+            {item.character.name}
+          </em>
+        </div>
+      );
+    });
   };
 
   const textColor = theme.text;
@@ -57,6 +89,12 @@ const Index = () => {
           {renderRow('Premiered', show.premiered, textColor)}
           {renderRow('Ended', show.ended, textColor)}
           {renderRow('Genres', show.genres.join(', '), textColor)}
+          <>
+            <h2 style={{ color: textColor }}>Cast</h2>
+            <div className="show-cast">
+              {<RenderCast textColor={textColor} />}
+            </div>
+          </>
         </div>
       </div>
     );

@@ -28,6 +28,35 @@
   justify-content: space-between;
 }
 
+.show-cast {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.cast-item {
+  width: 30%;
+  display: flex;
+  margin-left: 0.7rem;
+  flex-direction: column;
+}
+
+.cast-item img {
+  width: 100%;
+  border-radius: 50%;
+  height: 10rem;
+}
+
+.cast-item p,
+.cast-item em {
+  text-align: center;
+}
+
+.person-name {
+  font-weight: 600;
+}
+
 @media screen and (max-width: 900px) {
   .show-details {
     flex-direction: column;
