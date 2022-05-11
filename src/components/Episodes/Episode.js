@@ -59,21 +59,23 @@ const Episode = () => {
 
     return (
       <div className="episode" style={{ backgroundColor: theme.bg }}>
-        <button onClick={next} style={btnStyle} className="btn btn-next">
-          {`>`}
-        </button>
-        <button
-          onClick={previous}
-          style={btnStyle}
-          className="btn btn-previous"
-        >
-          {`<`}
-        </button>
-        <img
-          src={episodes.episodes[episodeIndex].image.original}
-          alt={episodes.episodes[episodeIndex].name}
-          title={episodes.episodes[episodeIndex].name}
-        />
+        <div className="episode-img-container">
+          <img
+            src={episodes.episodes[episodeIndex].image.original}
+            alt={episodes.episodes[episodeIndex].name}
+            title={episodes.episodes[episodeIndex].name}
+          />
+          <button onClick={next} style={btnStyle} className="btn btn-next">
+            {`>`}
+          </button>
+          <button
+            onClick={previous}
+            style={btnStyle}
+            className="btn btn-previous"
+          >
+            {`<`}
+          </button>
+        </div>
         <div style={{ borderBottomColor: theme.text }} className="extra-info">
           <div>
             <h4 style={{ color: theme.text }}>Title</h4>

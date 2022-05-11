@@ -50,9 +50,9 @@ const Index = () => {
       return <Error>{cast.error}</Error>;
     }
 
-    return cast.cast.map((item) => {
+    return cast.cast.map((item, index) => {
       return (
-        <div className="cast-item">
+        <div className="cast-item" key={index}>
           <img
             src={item.person.image?.original}
             alt={item.person.name}
