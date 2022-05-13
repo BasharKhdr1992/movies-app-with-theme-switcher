@@ -7,14 +7,15 @@ import { ShowContext } from '../../context/ShowContext';
 import CenteredContainer from './../UI/CenteredContainer';
 import Divider from '../UI/Divider';
 import Error from '../UI/Error';
-import { useWindowSize } from './../../custom-hooks/useWindowSize';
+import { useWindowSize } from '../../custom-hooks/useWindowSize';
 import Spinner from '../UI/Spinner';
 
 const Index = () => {
   const [show, setShow] = useState(null);
   const { theme } = useContext(ThemeContext);
 
-  const { cast, addCast } = useContext(ShowContext);
+  const { cast, addCast, setCurrentShow, openImagesModal } =
+    useContext(ShowContext);
 
   const [width] = useWindowSize();
 
@@ -28,6 +29,7 @@ const Index = () => {
         if (foundShow !== undefined) {
           setShow(foundShow);
           addCast(id);
+          setCurrentShow(id);
         }
       }
     }
@@ -73,7 +75,7 @@ const Index = () => {
   if (show !== null) {
     return (
       <div className="show-details" style={{ backgroundColor: theme.bg }}>
-        <div className="show-img-container">
+        <div className="show-img-container" onClick={openImagesModal}>
           <img src={show.image.original} alt={show.name} title={show.name} />
         </div>
         {renderHtml(show.summary, 'show-summary', textColor)}

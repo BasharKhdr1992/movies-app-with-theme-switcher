@@ -1,0 +1,46 @@
+.lightbox-modal {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  background-color: hsla(0, 0%, 0%, 0.45);
+}
+
+.icon-close-container {
+  width: 40%;
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.icon-close-container .icon-close path {
+  fill: #fff;
+}
+
+.lightbox-modal .product-img-container {
+  margin-top: 2rem;
+}
+
+@media screen and (max-width: 720px) {
+  .lightbox-modal {
+    padding: 0;
+    height: 370vh;
+  }
+
+  .icon-close-container {
+    width: 100%;
+    margin-top: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 3rem;
+  }
+}

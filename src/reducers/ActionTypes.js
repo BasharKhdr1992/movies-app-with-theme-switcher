@@ -13,3 +13,7 @@ export const EPISODES_ERROR = 'EPISODES_ERROR';
 export const CAST_LOADING = 'CAST_LOADING';
 export const CAST_ERROR = 'CAST_ERROR';
 export const CAST_LOADED = 'CAST_LOADED';
+
+export const IMAGES_LOADING = 'IMAGES_LOADING';
+export const IMAGES_ERROR = 'IMAGES_ERROR';
+export const IMAGES_LOADED = 'IMAGES_LOADED';

@@ -1,8 +1,9 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, useReducer, useState } from 'react';
 import * as Types from '../reducers/ActionTypes';
 import { useShow } from './../custom-hooks/useShow';
-import axios from './../api/axios';
 import { ShowCastReducer } from './../reducers/ShowCastReducer';
+import { ShowImagesReducer } from '../reducers/ShowImagesReducer';
+import * as Api from '../api/api';
 
 const showsIds = [169, 82, 123, 335, 491, 3928, 83, 527, 73, 179, 430, 22];
 
@@ -17,39 +18,21 @@ export const ShowProvider = (props) => {
     error: null,
   });
 
+  const [stateImages, dispatchImages] = useReducer(ShowImagesReducer, {
+    images: [],
+    isLoading: false,
+    error: null,
+  });
+
+  const [isImagesModal, setIsImagesModals] = useState(false);
+  const [currentShow, setCurrentShow] = useState(null);
+
   const searchShows = (keyword) => {
     dispatchShow({
       type: Types.SHOWS_LOADING,
     });
 
-    setTimeout(async () => {
-      try {
-        const res = await axios.get(
-          `https://api.tvmaze.com/search/shows?q=${keyword}`
-        );
-        dispatchShow({
-          type: Types.SHOWS_LOADED,
-          payload: res.data.map((data) => data.show),
-        });
-      } catch (error) {
-        if (error.response) {
-          dispatchShow({
-            type: Types.SHOWS_ERROR,
-            payload: error.response.data,
-          });
-        } else if (error.request) {
-          dispatchShow({
-            type: Types.SHOWS_ERROR,
-            payload: error.request,
-          });
-        } else {
-          dispatchShow({
-            type: Types.SHOWS_ERROR,
-            payload: error.message,
-          });
-        }
-      }
-    }, 2500);
+    setTimeout(() => Api.searchShows(keyword, dispatchShow), 2500);
   };
 
   const addCast = (showId) => {
@@ -57,39 +40,34 @@ export const ShowProvider = (props) => {
       type: Types.CAST_LOADING,
     });
 
-    setTimeout(async () => {
-      try {
-        const res = await axios.get(
-          `https://api.tvmaze.com/shows/${showId}/cast`
-        );
-        dispatchCast({
-          type: Types.CAST_LOADED,
-          payload: res.data,
-        });
-      } catch (error) {
-        if (error.response) {
-          dispatchCast({
-            type: Types.CAST_ERROR,
-            payload: error.response.data,
-          });
-        } else if (error.request) {
-          dispatchCast({
-            type: Types.CAST_ERROR,
-            payload: error.request,
-          });
-        } else {
-          dispatchCast({
-            type: Types.CAST_ERROR,
-            payload: error.message,
-          });
-        }
-      }
-    }, 2500);
+    setTimeout(() => Api.addCast(showId, dispatchCast), 2500);
   };
+
+  const addImages = (showId) => {
+    dispatchImages({
+      type: Types.IMAGES_LOADING,
+    });
+    setTimeout(() => Api.addImages(showId, dispatchImages), 2500);
+  };
+
+  const openImagesModal = () => setIsImagesModals(true);
+  const closeImagesModal = () => setIsImagesModals(false);
 
   return (
     <ShowContext.Provider
-      value={{ shows: stateShow, searchShows, cast: stateCast, addCast }}
+      value={{
+        shows: stateShow,
+        searchShows,
+        cast: stateCast,
+        addCast,
+        images: stateImages,
+        addImages,
+        isImagesModal,
+        openImagesModal,
+        closeImagesModal,
+        currentShow,
+        setCurrentShow,
+      }}
     >
       {props.children}
     </ShowContext.Provider>
