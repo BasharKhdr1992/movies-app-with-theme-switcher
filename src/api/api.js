@@ -135,3 +135,30 @@ export const addSeasons = async (showId, dispatchSeasons) => {
     }
   }
 };
+
+export const addPerson = async (personId, dispatchPerson) => {
+  try {
+    const res = await axios.get(`people/${personId}`);
+    dispatchPerson({
+      type: Types.PERSON_LOADED,
+      payload: res.data,
+    });
+  } catch (error) {
+    if (error.response) {
+      dispatchPerson({
+        type: Types.PERSON_ERROR,
+        payload: error.response.data,
+      });
+    } else if (error.request) {
+      dispatchPerson({
+        type: Types.PERSON_ERROR,
+        payload: error.request,
+      });
+    } else {
+      dispatchPerson({
+        type: Types.PERSON_ERROR,
+        payload: error.message,
+      });
+    }
+  }
+};

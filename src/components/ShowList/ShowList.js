@@ -33,7 +33,7 @@ const ShowList = () => {
     }
 
     return (
-      <List>
+      <List className="centered">
         {shows.shows.map((show) => {
           return <ShowCard key={show.id} data={show} />;
         })}

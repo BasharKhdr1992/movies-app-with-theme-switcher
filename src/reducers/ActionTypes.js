@@ -17,3 +17,7 @@ export const CAST_LOADED = 'CAST_LOADED';
 export const IMAGES_LOADING = 'IMAGES_LOADING';
 export const IMAGES_ERROR = 'IMAGES_ERROR';
 export const IMAGES_LOADED = 'IMAGES_LOADED';
+
+export const PERSON_LOADING = 'PERSON_LOADING';
+export const PERSON_ERROR = 'PERSON_ERROR';
+export const PERSON_LOADED = 'PERSON_LOADED';

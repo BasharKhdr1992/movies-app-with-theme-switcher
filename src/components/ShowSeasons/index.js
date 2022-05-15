@@ -10,6 +10,7 @@ import CenteredContainer from '../UI/CenteredContainer';
 import Spinner from '../UI/Spinner';
 import Overlay from '../UI/Overlay';
 import { ThemeContext } from './../../context/ThemeContext';
+import Back from '../UI/Back';
 
 const Index = () => {
   const { id } = useParams();
@@ -46,43 +47,46 @@ const Index = () => {
     </CenteredContainer>;
   } else if (seasons.seasons.length > 0) {
     return (
-      <List>
-        {seasons.seasons.map((season) => {
-          const renderSummary = selectedSeason === season.id;
-          return (
-            <>
-              <Card key={season.id}>
-                <img
-                  src={season.image?.original}
-                  className="img"
-                  alt={season.name}
-                  title={season.title}
-                />
-                <Overlay className="centered">
-                  <button
-                    onClick={() => setSeason(season.id)}
-                    className="overlay-link"
-                  >
-                    summary
-                  </button>
-                  <Link
-                    to={`/seasons/${season.id}/episodes`}
-                    className="overlay-link"
-                  >
-                    episodes
-                  </Link>
-                </Overlay>
-              </Card>
-              {renderSummary &&
-                (season.summary ? (
-                  renderHtml(season.summary, 'season-summary', theme.text)
-                ) : (
-                  <p className="season-summary">No Summary Found</p>
-                ))}
-            </>
-          );
-        })}
-      </List>
+      <div className="show-seasons-wrapper">
+        <Back />
+        <List>
+          {seasons.seasons.map((season) => {
+            const renderSummary = selectedSeason === season.id;
+            return (
+              <>
+                <Card key={season.id}>
+                  <img
+                    src={season.image?.original}
+                    className="img"
+                    alt={season.name}
+                    title={season.title}
+                  />
+                  <Overlay className="centered">
+                    <button
+                      onClick={() => setSeason(season.id)}
+                      className="overlay-link"
+                    >
+                      summary
+                    </button>
+                    <Link
+                      to={`/seasons/${season.id}/episodes`}
+                      className="overlay-link"
+                    >
+                      episodes
+                    </Link>
+                  </Overlay>
+                </Card>
+                {renderSummary &&
+                  (season.summary ? (
+                    renderHtml(season.summary, 'season-summary', theme.text)
+                  ) : (
+                    <p className="season-summary">No Summary Found</p>
+                  ))}
+              </>
+            );
+          })}
+        </List>
+      </div>
     );
   } else {
     return <CenteredContainer>Not Data Found</CenteredContainer>;

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useRef } from 'react';
 import { ThemeContext } from '../../context/ThemeContext';
 import { Link } from 'react-router-dom';
 import './index.css';
@@ -6,12 +6,16 @@ import Dropdown from './Dropdown';
 import { useWindowSize } from './../../custom-hooks/useWindowSize';
 import Hamburger from '../../svgs/Hamburger';
 import Close from '../../svgs/Close';
+import { useWindowScroll } from '../../custom-hooks/useWindowScroll';
 
 const Index = () => {
   const [dropdown, setDropdown] = useState(false);
   const { theme, toggleMode, darkMode } = useContext(ThemeContext);
 
   const [width] = useWindowSize();
+  const [scroll] = useWindowScroll();
+
+  const ref1 = useRef(null);
 
   const color = theme.text;
 
@@ -19,8 +23,16 @@ const Index = () => {
     setDropdown(!dropdown);
   };
 
+  const navbarHeight = ref1?.current?.scrollHeight;
+
+  const isSticky = navbarHeight < scroll;
+
   return (
-    <nav className="navbar" style={{ backgroundColor: theme.bg }}>
+    <nav
+      className={`navbar ${isSticky ? 'sticky' : undefined}`}
+      ref={ref1}
+      style={{ backgroundColor: theme.bg }}
+    >
       <Link to={'/'} className="navlink logo">
         <span style={{ color }}>Tv Shows</span>
       </Link>
@@ -71,7 +83,9 @@ const Index = () => {
           {!dropdown ? <Hamburger /> : <Close />}
         </button>
       </div>
-      {width < 900 && dropdown && <Dropdown />}
+      {width < 900 && dropdown && (
+        <Dropdown isSticky={isSticky} scrollHeight={navbarHeight} />
+      )}
     </nav>
   );
 };

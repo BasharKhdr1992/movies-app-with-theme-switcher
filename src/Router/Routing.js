@@ -6,6 +6,7 @@ import Register from '../components/Auth/Register';
 import Login from '../components/Auth/Login';
 import { Routes, Route } from 'react-router-dom';
 import Episode from '../components/Episodes/Episode';
+import PersonDetails from '../components/PersonDetails';
 
 const Routing = () => {
   return (
@@ -15,6 +16,7 @@ const Routing = () => {
         <Route path="" element={<ShowSeasons />} />
         <Route path="episodes" element={<Episode />} />
       </Route>
+      <Route path="/people/:id" element={<PersonDetails />} />
       <Route path="/details/:id" element={<ShowDetails />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />

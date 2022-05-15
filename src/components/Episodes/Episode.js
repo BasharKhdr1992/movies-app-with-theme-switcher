@@ -7,6 +7,7 @@ import CenteredContainer from '../UI/CenteredContainer';
 import Spinner from '../UI/Spinner';
 import Error from '../UI/Error';
 import { renderHtml } from './../../utils/index';
+import Back from '../UI/Back';
 
 const Episode = () => {
   const [episodeIndex, setEpisodeIndex] = useState(0);
@@ -59,9 +60,10 @@ const Episode = () => {
 
     return (
       <div className="episode" style={{ backgroundColor: theme.bg }}>
+        <Back />
         <div className="episode-img-container">
           <img
-            src={episodes.episodes[episodeIndex].image.original}
+            src={episodes.episodes[episodeIndex].image?.original}
             alt={episodes.episodes[episodeIndex].name}
             title={episodes.episodes[episodeIndex].name}
           />

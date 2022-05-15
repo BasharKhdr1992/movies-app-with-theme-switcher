@@ -19,6 +19,28 @@
       body {
         font-family: 'Nunito Sans', sans-serif;
       }
+      body::-webkit-scrollbar {
+        width: 0.5rem;
+      }
+
+      body::-webkit-scrollbar-track {
+        background-color: #fff;
+        border-radius: 1rem;
+      }
+
+      body::-webkit-scrollbar-thumb {
+        background-color: hsla(208, 23%, 22%, 0);
+        border-radius: 1rem;
+      }
+
+      body::-webkit-scrollbar-thumb :focus {
+        background-color: hsla(208, 23%, 22%, 1);
+        transition: all 0.3s ease-out;
+      }
+
+      body::-webkit-scrollbar-thumb:hover {
+        background-color: hsla(208, 23%, 22%, 0.7);
+      }
     </style>
     <title>Tv Shows</title>
   </head>

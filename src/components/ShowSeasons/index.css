@@ -1,3 +1,6 @@
+.show-seasons-wrapper {
+  padding: 1rem;
+}
 .season-summary {
   width: 12rem;
   height: 18rem;
@@ -7,7 +10,6 @@
   overflow: auto;
   padding-right: 1rem;
 }
-
 .season-summary::-webkit-scrollbar {
   width: 0.5rem;
 }

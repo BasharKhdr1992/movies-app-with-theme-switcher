@@ -41,6 +41,15 @@
   display: none;
 }
 
+.sticky {
+  position: sticky;
+}
+
+.navbar.sticky {
+  z-index: 2;
+  top: 0;
+}
+
 @media screen and (max-width: 900px) {
   .collapse {
     display: none;
