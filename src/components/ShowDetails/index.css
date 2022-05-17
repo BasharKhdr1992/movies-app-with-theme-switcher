@@ -8,7 +8,6 @@
 
 .show-img-container {
   width: 40%;
-  cursor: pointer;
 }
 .show-details-middle,
 .more-details {
@@ -18,6 +17,7 @@
 .show-img-container img {
   width: 100%;
   height: auto;
+  cursor: zoom-in;
 }
 
 .more-details {

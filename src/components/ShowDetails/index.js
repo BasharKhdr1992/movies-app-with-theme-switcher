@@ -137,8 +137,13 @@ const Index = () => {
       <div className="show-details-wrapper">
         <Back />
         <div className="show-details" style={{ backgroundColor: theme.bg }}>
-          <div className="show-img-container" onClick={openImagesModal}>
-            <img src={show.image.original} alt={show.name} title={show.name} />
+          <div className="show-img-container">
+            <img
+              src={show.image.original}
+              onClick={openImagesModal}
+              alt={show.name}
+              title={show.name}
+            />
           </div>
           <div className="show-details-middle">
             {renderHtml(show.summary, 'show-summary', textColor)}
