@@ -15,7 +15,7 @@ const Toggle = () => {
 
   const onToggleClicked = () => {
     if (ref1 !== null) {
-      ref1.current.style.left = darkMode ? '1.9rem' : '0.2rem';
+      ref1.current.style.left = darkMode ? '2rem' : '0.2rem';
     }
 
     toggleMode();
@@ -23,7 +23,7 @@ const Toggle = () => {
 
   return (
     <div className="toggle-wrapper">
-      <p className="toggle-text">Dark Mode</p>
+      <p className="toggle-text collapse">Dark Mode</p>
       <div style={toggleBg} onClick={onToggleClicked} className={'toggle'}>
         <div ref={ref1} style={toggleSwitchBg} className="toggle-switch" />
       </div>
