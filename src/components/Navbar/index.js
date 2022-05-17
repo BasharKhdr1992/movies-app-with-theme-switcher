@@ -7,10 +7,11 @@ import { useWindowSize } from './../../custom-hooks/useWindowSize';
 import Hamburger from '../../svgs/Hamburger';
 import Close from '../../svgs/Close';
 import { useWindowScroll } from '../../custom-hooks/useWindowScroll';
+import Toggle from '../UI/Toggle';
 
 const Index = () => {
   const [dropdown, setDropdown] = useState(false);
-  const { theme, toggleMode, darkMode } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
   const [width] = useWindowSize();
   const [scroll] = useWindowScroll();
@@ -72,13 +73,7 @@ const Index = () => {
         >
           <span style={{ color }}>Register</span>
         </Link>
-        <button
-          onClick={toggleMode}
-          style={{ color: theme.text }}
-          className="navlink"
-        >
-          {darkMode ? 'Light Mode' : 'Dark Mode'}
-        </button>
+        <Toggle />
         <button onClick={toggleDropdown} className="navlink mobile">
           {!dropdown ? <Hamburger /> : <Close />}
         </button>
